@@ -1,0 +1,97 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="midde_cont">
+    <div class="container-fluid">
+       <div class="row column_title">
+          <div class="col-md-12">
+             <div class="page_title">
+                <h2>Dashboard</h2>
+             </div>
+          </div>
+          <div class="container " style="border: solid black;padding: 30px;margin-top: 30px;border-radius: 6px;">
+            <div class="row">
+              <div class="col-md-12">
+                <form method="POST" action="{% url 'founded' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Founded Image</label>
+                    <input type="file" class="form-control" name="founded_img" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Founded Name</label>
+                    <input type="text" class="form-control" name="founded_title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert Founded Name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Founded Designation</label>
+                    <input type="text" class="form-control" name="founded_deg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Founded Designation">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Founded info1</label>
+                    <input type="text" class="form-control" name="founded_info1" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Founded Info1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Founded info2</label>
+                    <input type="text" class="form-control" name="founded_info2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Title Founded Info2">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">twiter</label>
+                    <input type="text" class="form-control" name="founded_twiter" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Twiter link">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Facebook</label>
+                    <input type="text" class="form-control" name="founded_fb" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Facebook link">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Instagram</label>
+                    <input type="text" class="form-control" name="founded_ins" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Instagram link ">
+                  </div>  
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+              </div>
+
+              <div class="table-responsive-sm">
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Designation</th>
+                      <th scope="col">info1</th>
+                      <th scope="col">info1</th>
+                      <th scope="col">twiter</th>
+                      <th scope="col">Facebook</th>
+                      <th scope="col">Instagram</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in founded_show %}
+                    <tr>
+                      <td scope="row">#</td>
+                      <td><img src="/media/{{i.founding_image}}" alt="" style="width: 100px;height: 100px;"></td>
+                      <td> {{i.name_founding}} </td>
+                      <td> {{i.designation_founding}} </td>
+                      <td> {{i.founding_info1}} </td>
+                      <td> {{i.founding_info2}} </td>
+                      <td> {{i.twiter_link}} </td>
+                      <td> {{i.facebook_link}} </td>
+                      <td> {{i.instagram_link}} </td>
+                      <td ><a href="" style="color: #000;">Edit</a>||<a href="" style="color: #000;">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table> 
+              </div>
+            </div>           
+          </div>
+       </div>
+       <!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% endblock %}

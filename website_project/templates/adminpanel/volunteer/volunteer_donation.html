@@ -1,0 +1,73 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="midde_cont">
+    <div class="container-fluid">
+       <div class="row column_title">
+          <div class="col-md-12">
+             <div class="page_title">
+                <h2>Dashboard</h2>
+             </div>
+          </div>
+          <div class="container " style="border: solid black;padding: 30px;margin-top: 30px;border-radius: 6px;">
+            <div class="row">
+              <div class="col-md-12">
+                <form method="POST" action="{% url 'volunteer' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Impact</label>
+                    <input type="text" class="form-control" name="impact_title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert impact Title">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label"> live</label>
+                    <input type="text" class="form-control" name="live_title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert impact Title">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Dontions</label>
+                    <input type="text" class="form-control" name="dontions_title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Dontions Title ">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Volunteer</label>
+                    <input type="text" class="form-control" name="volunteer_title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Title Volunteer Title">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+              </div>
+
+              <div class="col-md-12">
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Impact</th>
+                      <th scope="col">live</th>
+                      <th scope="col">Dontions</th>
+                      <th scope="col">volunteer</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in vel_show %}
+                    <tr>
+                      <th scope="row"></th>
+                      <td> {{i.impact_title}} </td>
+                      <td> {{i.save_live}} </td>
+                      <td> {{i.make_donation}} </td>
+                      <td> {{i.be_volunteer}} </td>
+                      <td ><a href="" style="color: #000;">Edit</a>||<a href="" style="color: #000;">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table> 
+              </div>
+            </div>           
+          </div>
+       </div>
+       <!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'adminpanel/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+<div style="border:1px solid black;padding: 30px;border-radius: 5px;">
+    {% for i in edit_wel_info %}
+    <form method="POST" action="{% url 'welcome_update' i.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Welcome Title</label>
+            <input type="text" class="form-control" value="{{i.welcome_title}}" name="welcome_title" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Insert a Title">
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    {% endfor %}
+</div>
+{% load sweetify %}
+{% sweetify %}
+{% endblock %}

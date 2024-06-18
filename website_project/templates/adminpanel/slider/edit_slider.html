@@ -1,0 +1,33 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div style="border:1px solid black;padding: 30px;border-radius: 5px;">
+    {% for i in edit_info %}
+    <form method="POST" action="{% url 'update_slider' i.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Slider Title</label>
+            <input type="text" class="form-control" value="{{i.slider_title}}" name="slider_title"
+                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Title">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Description</label>
+            <input type="text" class="form-control" value="{{i.slider_description}}" name="slider_desc"
+                id="exampleInputPassword1" placeholder="Insert a Description">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Slider Image</label>
+            <input type="file" class="form-control" name="slider_img" id="exampleInputPassword1">
+            <img src="/media/{{i.slider_image}}" alt="" style="width: 100px;height: 100px;">
+            <input type="text" name="slider_img_1" value="{{i.slider_image}}" hidden>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    {% endfor %}
+</div>
+{% load sweetify %}
+{% sweetify %}
+{% endblock %}

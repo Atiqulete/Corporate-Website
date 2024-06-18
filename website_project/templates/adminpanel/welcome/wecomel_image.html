@@ -1,0 +1,70 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="midde_cont">
+    <div class="container-fluid">
+       <div class="row column_title">
+          <div class="col-md-12">
+             <div class="page_title">
+                <h2>Dashboard</h2>
+             </div>
+          </div>
+          <div class="container " style="border: solid black;padding: 30px;margin-top: 30px;border-radius: 6px;">
+            <div class="row">
+              <div class="col-md-4">
+                <form method="POST" action="{% url 'welcome_image' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Text_01</label>
+                    <input type="text" class="form-control" name="image_text1" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type your first text">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">text_02</label>
+                    <input type="text" class="form-control" name="image_text2" id="exampleInputPassword1" placeholder="Type your first text">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Welcome Image</label>
+                    <input type="file" class="form-control" name="image_welcome" id="exampleInputPassword1">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+              </div>
+
+              <div class="col-md-8" style="border-left:1px solid black">
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">text1</th>
+                      <th scope="col">text2</th>
+                      <th scope="col">image</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in welcome_images  %}
+                    <tr>
+                      <th scope="row">{{i.id}}</th>
+                      <td> {{i.image_text1}} </td>
+                      <td> {{i.image_text2}} </td>
+                      <td><img src="/media/{{i.image_welcome}}" alt="" style="width: 100px;height: 100px;"></td>
+                      <td>
+                        <a href="{% url 'welcome_img_edit' i.id %}" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> ||
+                        <a href="{% url 'delete_wel_img' i.id %}" class="btn btn-danger"><i class="fa-solid fa-trash"></i>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table> 
+              </div>
+            </div>
+          </div>
+       </div>
+       <!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% endblock %}

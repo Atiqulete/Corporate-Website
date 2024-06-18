@@ -1,0 +1,75 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Dashboard</h2>
+                </div>
+            </div>
+            <div class="container " style="border: solid black;padding: 30px;margin-top: 30px;border-radius: 6px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form method="POST" action="{% url 'mission' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Our Mission</label>
+                                <input type="text" class="form-control" name="mission_hed" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Insert a mission headline">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Mission Title</label>
+                                <input type="text" class="form-control" name="mission_tit" id="exampleInputPassword1"
+                                    placeholder="Insert a Mission Title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Mission Theme</label>
+                                <input type="text" class="form-control" name="mission_theme" id="exampleInputPassword1"
+                                    placeholder="Insert a mission theme ">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Mission Semantic </label>
+                                <input type="text" class="form-control" name="mission_semantic"
+                                    id="exampleInputPassword1" placeholder="Insert a mission_semantic ">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
+
+                    <div class="col-md-8" style="border-left:1px solid black">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Headline</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Theme</th>
+                                    <th scope="col">Semantic</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in mission_show %}
+                                <tr>
+                                    <td> {{i.mission_title}} </td>
+                                    <td> {{i.mission_description}} </td>
+                                    <td> {{i.mission_theme}} </td>
+                                    <td> {{i.mission_semantic}} </td>                     
+                                    <td><a href="" style="color: #000;">Edit</a>||<a href=""style="color: #000;">Delete</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end dashboard inner -->
+    </div>
+</div>
+</div>
+{% endblock %}

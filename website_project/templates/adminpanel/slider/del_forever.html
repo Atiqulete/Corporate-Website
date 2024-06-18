@@ -1,0 +1,45 @@
+{% extends 'adminpanel/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- <div class="midde_cont">
+    <div class="container-fluid">
+       <div class="row column_title">
+          <div class="col-md-12">
+             <div class="page_title">
+                <h2>Dashboard</h2>
+             </div>
+          </div>
+          <div class="container " style="border: solid black;padding: 30px;margin-top: 30px;border-radius: 6px;">
+              <div class="col-md-12">
+                <h2>Do you want to delete slider...? <a href="{% url 'del_permanent' del_final.id %}">Yes</a> / <a href="{% url 'trush' %}">No</a></h2>
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Image</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td scope="row">{{del_final.id}}</td>
+                      <td> {{del_final.slider_title}} </td>
+                      <td> {{del_final.slider_description}} </td>
+                      <td><img src="/media/{{del_final.slider_image}}" alt="" style="width: 100px;height: 100px;"></td>
+                    </tr> 
+                  </tbody>
+                </table>
+                <br>
+              </div>
+            </div>
+          </div>
+       </div>
+</div>
+</div>
+</div> -->
+{% load sweetify %}
+{% sweetify %}
+{% endblock %}
+

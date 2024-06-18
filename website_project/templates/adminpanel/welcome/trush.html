@@ -1,0 +1,63 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="midde_cont">
+    <div class="container-fluid">
+       <div class="row column_title">
+          <div class="col-md-12">
+             <div class="page_title">
+                <h2>Dashboard</h2>
+             </div>
+          </div>
+          <div class="container " style="border: solid black;padding: 30px;margin-top: 30px;border-radius: 6px;">
+            <div class="row">
+              <div class="col-md-4">  
+                <form method="POST" action="{% url 'welcome_text' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Welcome Title</label>
+                    <input type="text" class="form-control" name="welcome_title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Welcome txt">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+              </div>
+
+              <div class="col-md-8" style="border-left:1px solid black">
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in welcome_show %}
+                    <tr>
+                      <form action="{% url 'del_chcckbox_wel' %}" method="POST">   
+                        {% csrf_token %}
+                        <th scope="row"> <input type="checkbox" value="{{i.id}}" name="welcome_del_checkbox"> {{i.id}}</th>
+                        <td> {{i.welcome_title}} </td>  
+                        <td >
+                          <a href="{% url 'welcome_restore' i.id %}" class="btn btn-success"><i class="fa-solid fa-window-restore"></i></a> ||
+                          <!-- <a href="{% url 'welcome_del' i.id %}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a> -->
+                          <a href="{% url 'parmanent_del_welcome' i.id %}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                        <button type="submit">Delete All</button>
+                      </form>
+                  </tbody>
+                </table> 
+              </div>
+            </div>
+          </div>
+       </div>
+       <!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% endblock %}

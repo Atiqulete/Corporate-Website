@@ -1,0 +1,33 @@
+{% extends 'adminpanel/admin_base.html' %}
+{% load static %}
+{% block content %}
+<div class="container " style="border: solid black;padding: 30px;margin-top: 30px;border-radius: 6px;">
+    
+    <div class="row">
+        <div class="col-md-4">
+            {% for i in wel_img_edit %}
+            <form method="POST" action="{% url 'update_img_wel' i.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Text_01</label>
+                    <input type="text" class="form-control" value="{{i.image_text1}}" name="image_text1" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Type your first text">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">text_02</label>
+                    <input type="text" class="form-control" value="{{iimage_text2}}" name="image_text2" id="exampleInputPassword1"
+                        placeholder="Type your first text">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Welcome Image</label>
+                    <input type="file" class="form-control" name="image_welcome" id="exampleInputPassword1">
+                    <img src="/media/{{i.image_welcome}}" alt="" style="width: 100px;height: 100px;">
+                    <input type="text" name="image_welcome_1" value="{{i.image_welcome}}" hidden>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+            {% endfor %}
+        </div>
+        
+    </div>
+</div> {% endblock %}

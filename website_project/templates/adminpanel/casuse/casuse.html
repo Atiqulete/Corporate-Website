@@ -1,0 +1,95 @@
+{% extends 'adminpanel/admin_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="midde_cont">
+    <div class="container-fluid">
+       <div class="row column_title">
+          <div class="col-md-12">
+             <div class="page_title">
+                <h2>Dashboard</h2>
+             </div>
+          </div>
+          <div class="container " style="border: solid black;padding: 30px;margin-top: 30px;border-radius: 6px;">
+            <div class="row">
+              <div class="col-md-12">
+                <form method="POST" action="{% url 'casuse_vlo' %}" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Casuse Title</label>
+                    <input type="text" class="form-control" name="casuse_title" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a casuse Title ">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Casuse Description</label>
+                    <input type="text" class="form-control" name="casuse_desc" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Casuse Description">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Casuse Raised</label>
+                    <input type="text" class="form-control" name="casuse_raised1" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Casuse Raised">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Raised Amount</label>
+                    <input type="text" class="form-control" name="raised_amount1" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Raised Amount">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Casuse Goal</label>
+                    <input type="text" class="form-control" name="casuse_goal1" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a Casuse Goal">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Goal Amount</label>
+                    <input type="text" class="form-control" name="goal_amount1" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a goal_amount">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Casuse link</label>
+                    <input type="text" class="form-control" name="casuse_link" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a link">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Casuse Image</label>
+                    <input type="file" class="form-control" name="casuse_image" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insert a image">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+              </div>
+
+              <div class="col-md-12">
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th scope="col">Casuse Title</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Raised</th>
+                      <th scope="col">Raised Amount</th>
+                      <th scope="col">Casuse Goal</th>
+                      <th scope="col">Goal Amount</th>
+                      <th scope="col">Casuse link</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in casuse_show %}
+                    <tr>
+                      <td> {{i.casuse_title}} </td>
+                      <td> {{i.casuse_description}} </td>
+                      <td> {{i.casuse_raised}} </td>
+                      <td> {{i.raised_amount}} </td>
+                      <td> {{i.casuse_goal}} </td>
+                      <td> {{i.goal_amount}} </td>
+                      <td> {{i.casuse_link}} </td>
+                      <td><img src="/media/{{i.casuse_image}}" alt="" style="width: 100px;height: 100px;"></td>
+                      <td ><a href="" style="color: #000;">Edit</a>||<a href="" style="color: #000;">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table> 
+              </div>
+            </div>           
+          </div>
+       </div>
+       <!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% endblock %}

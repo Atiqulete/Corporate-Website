@@ -1,0 +1,692 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg bg-light shadow-lg">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'website/images/LOGO6.png' %}" class="logo img-fluid" alt="Naxify">
+            <span>
+                Naxify
+                <small>Man,woman & Baby items</small>
+            </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="#top">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="#section_2">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="#section_3">Causes</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="#section_4">Volunteer</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <!-- <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">News</a>
+
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                        <li><a class="dropdown-item" href="news.html">New Arrivals</a></li>
+
+                        <li><a class="dropdown-item" href="news-detail.html">News Branch</a></li> -->
+
+                    <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">News</a>
+
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">News Listing</a></li>
+
+                        <li><a class="dropdown-item" href="#">News Detail</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="#section_6">Contact</a>
+                </li>
+
+                <li class="nav-item ms-3">
+                    <a class="nav-link custom-btn custom-border-btn btn" href="donate.html">Donate</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="hero-section hero-section-full-height">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-lg-12 col-12 p-0">
+                    <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for i in slider_info %}
+                            <div class="carousel-item active">
+                                <img src="/media/{{i.slider_image}}" class="carousel-image img-fluid" alt="...">
+                                <div class="carousel-caption d-flex flex-column justify-content-end">
+                                    <h1> {{i.slider_title}} </h1>
+                                    <p> {{i.slider_description}} </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#hero-slide"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#hero-slide"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                {% for i in welcome_text %}
+                <div class="col-lg-10 col-12 text-center mx-auto">
+                    <h2 class="mb-5"> {{i.welcome_title}} </h2>
+                </div>
+                {% endfor%}
+                {% for i in welcome_image %}
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                    <div class="featured-block d-flex justify-content-center align-items-center">
+                        <a href="donate.html" class="d-block">
+                            <img src="/media/{{i.image_welcome}}" class="featured-block-image img-fluid" alt="">
+                            <p class="featured-block-text"> {{i.image_text1}}<strong> {{i.image_text2}}</strong></p>
+                            <!-- <p class="featured-block-text"> {{i.image_text1}} </p> -->
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding section-bg" id="section_2">
+        <div class="container">
+            <div class="row">
+                {% for i in story_up_img %}
+                <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                    <img src="/media/{{i.story_img}}" class="custom-text-box-image img-fluid" alt="">
+                </div>
+                {% endfor %}
+                <div class="col-lg-6 col-12">
+                    <div class="custom-text-box">
+                        {% for i in story_info %}
+                        <h2 class="mb-2">{{i.story_headline}}</h2>
+                        <h5 class="mb-3">{{i.story_title}}</h5>
+                        <p class="mb-0">{{i.story_description}}</p>
+                    </div>
+                    {% endfor %}
+                    <div class="row">
+                        {% for i in mission_info %}
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="custom-text-box mb-lg-0">
+                                <h5 class="mb-3">{{i.mission_title}}</h5>
+                                <p>{{i.mission_description}}</p>
+                                <ul class="custom-list mt-2">
+                                    <li class="custom-list-item d-flex">
+                                        <i class="bi-check custom-text-box-icon me-2"></i>
+                                        {{i.mission_theme}}
+                                    </li>
+                                    <li class="custom-list-item d-flex">
+                                        <i class="bi-check custom-text-box-icon me-2"></i>
+                                        {{i.mission_semantic}}
+                                    </li>
+                                </ul>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% for i in donation_info %}
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="custom-text-box d-flex flex-wrap d-lg-block mb-lg-0">
+                                <div class="counter-thumb">
+                                    <div class="d-flex">
+                                        <span class="counter-number" data-from="1" data-to="{{i.number_title}}"
+                                            data-speed="1000"></span>
+                                        <span class="counter-number-text"></span>
+                                    </div>
+                                    <span class="counter-text">{{i.founded_title}}</span>
+                                </div>
+                                <div class="counter-thumb mt-4">
+                                    <div class="d-flex">
+                                        <span class="counter-number" data-from="1" data-to="1" data-speed="1000"></span>
+                                        <span class="counter-number-text">{{i.founded_reg}}</span>
+                                    </div>
+                                    <span class="counter-text">{{i.donation_title}}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="about-section section-padding">
+        <div class="container">
+            {% for i in founding_info %}
+            <div class="row">
+                <div class="col-lg-6 col-md-5 col-12">
+                    <img src="/media/{{i.founding_image}}" class="about-image ms-lg-auto bg-light shadow-lg img-fluid"
+                        alt="">
+                </div>
+                <div class="col-lg-5 col-md-7 col-12">
+                    <div class="custom-text-block">
+                        <h2 class="mb-0">{{i.name_founding}}</h2>
+                        <p class="text-muted mb-lg-4 mb-md-4">{{i.designation_founding}}</p>
+                        <p>{{i.founding_info1}}</p>
+                        <p>{{i.founding_info2}}</p>
+                        <ul class="social-icon mt-4">
+                            <li class="social-icon-item">
+                                <a href="{{i.twiter_link}}" class="social-icon-link bi-twitter"></a>
+                            </li>
+                            <li class="social-icon-item">
+                                <a href="{{i.facebook_link}}" class="social-icon-link bi-facebook"></a>
+                            </li>
+                            <li class="social-icon-item">
+                                <a href="{{i.instagram_link}}" class="social-icon-link bi-instagram"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                {% endfor%}
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section section-padding section-bg">
+        <div class="container">
+            {% for i in volinteer_info %}
+            <div class="row justify-content-center align-items-center">
+
+                <div class="col-lg-5 col-12 volinteer_infoms-auto">
+                    <h2 class="mb-0">{{i.impact_title}}<br>{{i.save_live}}</h2>
+                </div>
+                <div class="col-lg-5 col-12">
+                    <a href="#" class="me-4">{{i.make_donation}}</a>
+                    <a href="#section_4" class="custom-btn btn smoothscroll">{{i.be_volunteer}}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section-padding" id="section_3">
+        <div class="container">
+            <div class="row">
+                {% for i in causes_head %}
+                <div class="col-lg-12 col-12 text-center mb-4">
+                    <h2>{{i.casuse_hed}}</h2>
+                </div>
+                {% endfor %}
+                {% for i in causes_info %}
+                <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                    <div class="custom-block-wrap">
+                        <img src="/media/{{i.casuse_image}}" class="custom-block-image img-fluid" alt="">
+                        <div class="custom-block">
+                            <div class="custom-block-body">
+                                <h5 class="mb-3">{{i.casuse_title}}</h5>
+                                <p>{{i.casuse_description}}</p>
+                                <div class="progress mt-4">
+                                    <div class="progress-bar w-75" role="progressbar" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="d-flex align-items-center my-2">
+                                    <p class="mb-0">
+                                        <strong>{{i.casuse_raised}}:</strong>
+                                        BDT-{{i.raised_amount}}
+                                    </p>
+                                    <p class="ms-auto mb-0">
+                                        <strong>{{i.casuse_goal}}:</strong>
+                                        BDT-{{i.goal_amount}}
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="{{i.casuse_link}}" class="custom-btn btn">Donate now</a>
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="volunteer-section section-padding" id="section_4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <h2 class="text-white mb-4">Volunteer</h2>
+                    <form class="custom-form volunteer-form mb-5 mb-lg-0" action="{% url 'send_email' %}" method="POST"
+                        role="form">
+                        {% csrf_token %}
+                        <h3 class="mb-4">Become a volunteer today</h3>
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                                <input type="text" name="volunteer_name" id="volunteer-name" class="form-control"
+                                    placeholder="Ahanaf Adil" required>
+                            </div>
+
+                            <div class="col-lg-6 col-12">
+                                <input type="email" name="volunteer_email" id="volunteer-email" pattern="[^ @]*@[^ @]*"
+                                    class="form-control" placeholder="ahanafadil@gmail.com" required>
+                            </div>
+                            <div class="col-lg-12 col-12">
+                                <input type="text" name="volunteer_subject" id="volunteer-subject" class="form-control"
+                                    placeholder="Subject" required>
+                            </div>
+                            <!-- <div class="col-lg-6 col-12">
+                                <div class="input-group input-group-file">
+                                    <input type="file" class="form-control" id="inputGroupFile02">
+
+                                    <label class="input-group-text" for="inputGroupFile02">Upload your CV</label>
+
+                                    <i class="bi-cloud-arrow-up ms-auto"></i>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <textarea name="volunteer_message" rows="3" class="form-control" id="volunteer-message"
+                            placeholder="Comment (Optional)"></textarea>
+                        <button type="submit" class="form-control">Submit</button>
+                    </form>
+                </div>
+                {% for i in about_volun %}
+                <div class="col-lg-6 col-12">
+                    <img src="/media/{{i.about_image}}"
+                        class="volunteer-image img-fluid" alt="">
+                    <div class="custom-block-body text-center">
+                        <h4 class="text-white mt-lg-3 mb-lg-3">{{i.about_tit}}</h4>
+                        <p class="text-white">{{i.about_desc}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section section-padding" id="section_5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-12 mb-5">
+                    <h2>Latest News</h2>
+                </div>
+                <div class="col-lg-7 col-12">
+                    <div class="news-block">
+                        <div class="news-block-top">
+                            <a href="news-detail.html">
+                                <img src="{% static 'website/images/news/medium-shot-volunteers-with-clothing-donations.jpg' %}"
+                                    class="news-image img-fluid" alt="">
+                            </a>
+                            <div class="news-category-block">
+                                <a href="#" class="category-block-link">
+                                    Lifestyle,
+                                </a>
+                                <a href="#" class="category-block-link">
+                                    Clothing Donation
+                                </a>
+                            </div>
+                        </div>
+                        <div class="news-block-info">
+                            <div class="d-flex mt-2">
+                                <div class="news-block-date">
+                                    <p>
+                                        <i class="bi-calendar4 custom-icon me-1"></i>
+                                        January 24, 2024
+                                    </p>
+                                </div>
+                                <div class="news-block-author mx-5">
+                                    <p>
+                                        <i class="bi-person custom-icon me-1"></i>
+                                        By Admin
+                                    </p>
+                                </div>
+                                <div class="news-block-comment">
+                                    <p>
+                                        <i class="bi-chat-left custom-icon me-1"></i>
+                                        32 Comments
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="news-block-title mb-2">
+                                <h4><a href="news-detail.html" class="news-block-title-link">Clothing donation to
+                                        urban area</a></h4>
+                            </div>
+                            <div class="news-block-body">
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, facere totam nostrum,
+                                    quas, voluptatibus id dignissimos laborum culpa suscipit saepe molestiae! Quis porro
+                                    quas obcaecati dolore modi? Obcaecati, error qui.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-block mt-3">
+                        <div class="news-block-top">
+                            <a href="news-detail.html">
+                                <img src="{% static 'website/images/news/medium-shot-people-collecting-foodstuff.jpg' %}"
+                                    class="news-image img-fluid" alt="">
+                            </a>
+                            <div class="news-category-block">
+                                <a href="#" class="category-block-link">
+                                    Food,
+                                </a>
+                                <a href="#" class="category-block-link">
+                                    Donation,
+                                </a>
+                                <a href="#" class="category-block-link">
+                                    Caring
+                                </a>
+                            </div>
+                        </div>
+                        <div class="news-block-info">
+                            <div class="d-flex mt-2">
+                                <div class="news-block-date">
+                                    <p>
+                                        <i class="bi-calendar4 custom-icon me-1"></i>
+                                        January 24, 2024
+                                    </p>
+                                </div>
+                                <div class="news-block-author mx-5">
+                                    <p>
+                                        <i class="bi-person custom-icon me-1"></i>
+                                        By Admin
+                                    </p>
+                                </div>
+                                <div class="news-block-comment">
+                                    <p>
+                                        <i class="bi-chat-left custom-icon me-1"></i>
+                                        50 Comments
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="news-block-title mb-2">
+                                <h4><a href="news-detail.html" class="news-block-title-link">Food donation area</a>
+                                </h4>
+                            </div>
+                            <div class="news-block-body">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium debitis itaque
+                                    quidem distinctio odit fuga soluta enim sint error voluptates dolores amet est,
+                                    voluptas perspiciatis vero nostrum facilis natus labore.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-12 mx-auto">
+                    <form class="custom-form search-form" action="#" method="post" role="form">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+
+                        <button type="submit" class="form-control">
+                            <i class="bi-search"></i>
+                        </button>
+                    </form>
+                    <h5 class="mt-5 mb-3">Recent news</h5>
+                    <div class="news-block news-block-two-col d-flex mt-4">
+                        <div class="news-block-two-col-image-wrap">
+                            <a href="news-detail.html">
+                                <img src="{% static 'website/images/news/africa-humanitarian-aid-doctor.jpg' %}"
+                                    class="news-image img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="news-block-two-col-info">
+                            <div class="news-block-title mb-2">
+                                <h6><a href="news-detail.html" class="news-block-title-link">Food donation area</a>
+                                </h6>
+                            </div>
+                            <div class="news-block-date">
+                                <p>
+                                    <i class="bi-calendar4 custom-icon me-1"></i>
+                                    January 24, 2024
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-block news-block-two-col d-flex mt-4">
+                        <div class="news-block-two-col-image-wrap">
+                            <a href="news-detail.html">
+                                <img src="{% static 'website/images/news/close-up-happy-people-working-together.jpg' %}"
+                                    class="news-image img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="news-block-two-col-info">
+                            <div class="news-block-title mb-2">
+                                <h6><a href="news-detail.html" class="news-block-title-link">Volunteering Clean</a>
+                                </h6>
+                            </div>
+                            <div class="news-block-date">
+                                <p>
+                                    <i class="bi-calendar4 custom-icon me-1"></i>
+                                    October 24, 2036
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category-block d-flex flex-column">
+                        <h5 class="mb-3">Categories</h5>
+                        <a href="#" class="category-block-link">
+                            Drinking water
+                            <span class="badge">50</span>
+                        </a>
+                        <a href="#" class="category-block-link">
+                            Food Donation
+                            <span class="badge">60</span>
+                        </a>
+                        <a href="#" class="category-block-link">
+                            Children Education
+                            <span class="badge">20</span>
+                        </a>
+                        <a href="#" class="category-block-link">
+                            Poverty Development
+                            <span class="badge">25</span>
+                        </a>
+                        <a href="#" class="category-block-link">
+                            Clothing Donation
+                            <span class="badge">40</span>
+                        </a>
+                    </div>
+                    <div class="tags-block">
+                        <h5 class="mb-3">Tags</h5>
+                        <a href="#" class="tags-block-link">
+                            Donation
+                        </a>
+                        <a href="#" class="tags-block-link">
+                            Clothing
+                        </a>
+                        <a href="#" class="tags-block-link">
+                            Food
+                        </a>
+                        <a href="#" class="tags-block-link">
+                            Children
+                        </a>
+                        <a href="#" class="tags-block-link">
+                            Education
+                        </a>
+                        <a href="#" class="tags-block-link">
+                            Poverty
+                        </a>
+                        <a href="#" class="tags-block-link">
+                            Clean Water
+                        </a>
+                    </div>
+                    <form class="custom-form subscribe-form" action="#" method="post" role="form">
+                        <h5 class="mb-4">Newsletter Form</h5>
+                        <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*"
+                            class="form-control" placeholder="Email Address" required>
+                        <div class="col-lg-12 col-12">
+                            <button type="submit" class="form-control">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="testimonial-section section-padding section-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-12 mx-auto">
+                    <h2 class="mb-lg-3">Happy customers</h2>
+                    <div id="testimonial-carousel" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="carousel-caption">
+                                    <h4 class="carousel-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Repellat est odio ut aspernatur placeat perferendis saepe pariatur deleniti
+                                        aliquid dolorum perspiciatis at possimus amet, vel aliquam reiciendis delectus,
+                                        maxime ipsum!</h4>
+                                    <small class="carousel-name"><span class="carousel-name-title">Maria</span>,
+                                        Boss</small>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-caption">
+                                    <h4 class="carousel-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Tempore a quas quae at ea enim beatae voluptates dolore fuga ipsam! Earum ipsum
+                                        nobis, neque iste nihil excepturi consequatur perspiciatis amet.</h4>
+
+                                    <small class="carousel-name"><span class="carousel-name-title">Thomas</span>,
+                                        Partner</small>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-caption">
+                                    <h4 class="carousel-title">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                        Laboriosam, facilis. Earum reiciendis ab cupiditate impedit. Ducimus nam optio
+                                        sapiente nemo fugiat? Nesciunt et voluptatibus nihil unde nobis architecto nulla
+                                        ipsa.</h4>
+
+                                    <small class="carousel-name"><span class="carousel-name-title">Jane</span>,
+                                        Advisor</small>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-caption">
+                                    <h4 class="carousel-title">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                        Aspernatur tempora exercitationem dolorum eum ex enim iusto dignissimos rerum
+                                        eos, at, quos veniam nesciunt, libero consequuntur fugit? Recusandae ipsam quae
+                                        minima.</h4>
+                                    <small class="carousel-name"><span class="carousel-name-title">Bob</span>,
+                                        Entreprenuer</small>
+                                </div>
+                            </div>
+                            <ol class="carousel-indicators">
+                                <li data-bs-target="#testimonial-carousel" data-bs-slide-to="0" class="active">
+                                    <img src="{% static 'website/images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg' %}"
+                                        class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                </li>
+                                <li data-bs-target="#testimonial-carousel" data-bs-slide-to="1" class="">
+                                    <img src="{% static 'website/images/avatar/portrait-young-redhead-bearded-male.jpg' %}"
+                                        class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                </li>
+                                <li data-bs-target="#testimonial-carousel" data-bs-slide-to="2" class="">
+                                    <img src="{% static 'website/images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg' %}"
+                                        class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                </li>
+                                <li data-bs-target="#testimonial-carousel" data-bs-slide-to="3" class="">
+                                    <img src="{% static 'website/images/avatar/studio-portrait-emotional-happy-funny.jpg' %}"
+                                        class="img-fluid rounded-circle avatar-image" alt="avatar">
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section section-padding" id="section_6">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-12 ms-auto mb-5 mb-lg-0">
+                    <div class="contact-info-wrap">
+                        <h2>Get in touch</h2>
+                        <div class="contact-image-wrap d-flex flex-wrap">
+                            <img src="{% static 'website/images/avatar/pretty-blonde-woman-wearing-white-t-shirt.jpg' %}"
+                                class="img-fluid avatar-image" alt="">
+                            <div class="d-flex flex-column justify-content-center ms-3">
+                                <p class="mb-0">Clara Barton</p>
+                                <p class="mb-0"><strong>HR & Office Manager</strong></p>
+                            </div>
+                        </div>
+                        <div class="contact-info">
+                            <h5 class="mb-3">Contact Infomation</h5>
+                            <p class="d-flex mb-2">
+                                <i class="bi-geo-alt me-2"></i>
+                                Wireless Gate,Uttor Seowta,Road-03,Block-01,House-02,Manikgonj Sadar, Bangladesh
+                            </p>
+                            <p class="d-flex mb-2">
+                                <i class="bi-telephone me-2"></i>
+                                <a href="tel: 305-240-9671">
+                                    +8801911015186
+                                </a>
+                            </p>
+                            <p class="d-flex">
+                                <i class="bi-envelope me-2"></i>
+                                <a href="mailto:info@yourgmail.com">
+                                    info@naxify.com
+                                </a>
+                            </p>
+                            <a href="#" class="custom-btn btn mt-3">Get Direction</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-12 mx-auto">
+                    <form class="custom-form contact-form" action="#" method="post" role="form">
+                        <h2>Contact form</h2>
+                        <p class="mb-4">Or, you can just send an email:
+                            <a href="#">info@naxify.com</a>
+                        </p>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <input type="text" name="first-name" id="first-name" class="form-control"
+                                    placeholder="Atiqul" required>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <input type="text" name="last-name" id="last-name" class="form-control"
+                                    placeholder="Islam" required>
+                            </div>
+                        </div>
+                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control"
+                            placeholder="atiqulete@naxify.com" required>
+                        <textarea name="message" rows="5" class="form-control" id="message"
+                            placeholder="What can we help you?"></textarea>
+                        <button type="submit" class="form-control">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
